@@ -65,11 +65,11 @@ http://www.gulixueyuan.com/ 谷粒学院
 
 整合maven进来；
 
-![idea设置](images/搜狗截图20180129151045.png)
+![idea设置](https://img-blog.csdnimg.cn/20201215150520874.png)
 
 
 
-![images/](images/搜狗截图20180129151112.png)
+![images/](https://img-blog.csdnimg.cn/20201215150639417.png)
 
 ## 4、Spring Boot HelloWorld
 
@@ -100,7 +100,6 @@ http://www.gulixueyuan.com/ 谷粒学院
 ### 3、编写一个主程序；启动Spring Boot应用
 
 ```java
-
 /**
  *  @SpringBootApplication 来标注一个主程序类，说明这是一个Spring Boot应用
  */
@@ -268,7 +267,7 @@ public @interface EnableAutoConfiguration {
 
 ​		将所有需要导入的组件以全类名的方式返回；这些组件就会被添加到容器中；
 
-​		会给容器中导入非常多的自动配置类（xxxAutoConfiguration）；就是给容器中导入这个场景需要的所有组件，并配置好这些组件；		![自动配置类](images/搜狗截图20180129224104.png)
+​		会给容器中导入非常多的自动配置类（xxxAutoConfiguration）；就是给容器中导入这个场景需要的所有组件，并配置好这些组件；		![自动配置类](https://img-blog.csdnimg.cn/20201215150724534.png)
 
 有了自动配置类，免去了我们手动编写配置注入功能组件等的工作；
 
@@ -494,17 +493,17 @@ public class Person {
 
 调整
 
-![idea配置乱码](images/搜狗截图20180130161620.png)
+![idea配置乱码](https://img-blog.csdnimg.cn/20201215150757964.png)
 
 #### 2、@Value获取值和@ConfigurationProperties获取值比较
 
-|            | @ConfigurationProperties | @Value |
-| ---------- | ------------------------ | ------ |
-| 功能         | 批量注入配置文件中的属性             | 一个个指定  |
-| 松散绑定（松散语法） | 支持                       | 不支持    |
-| SpEL       | 不支持                      | 支持     |
-| JSR303数据校验 | 支持                       | 不支持    |
-| 复杂类型封装     | 支持                       | 不支持    |
+|                      | @ConfigurationProperties | @Value     |
+| -------------------- | ------------------------ | ---------- |
+| 功能                 | 批量注入配置文件中的属性 | 一个个指定 |
+| 松散绑定（松散语法） | 支持                     | 不支持     |
+| SpEL                 | 不支持                   | 支持       |
+| JSR303数据校验       | 支持                     | 不支持     |
+| 复杂类型封装         | 支持                     | 不支持     |
 
 配置文件yml还是properties他们都能获取到值；
 
@@ -676,7 +675,6 @@ person.dog.age=15
 ### 2、yml支持多文档块方式
 
 ```yml
-
 server:
   port: 8081
 spring:
@@ -806,18 +804,18 @@ java -jar spring-boot-02-config-02-0.0.1-SNAPSHOT.jar --server.port=8087  --serv
 
 **2）、@EnableAutoConfiguration 作用：**
 
- -  利用EnableAutoConfigurationImportSelector给容器中导入一些组件？
+ - 利用EnableAutoConfigurationImportSelector给容器中导入一些组件？
 
 - 可以查看selectImports()方法的内容；
 
-- List<String> configurations = getCandidateConfigurations(annotationMetadata,      attributes);获取候选的配置
+- List\<String> configurations = getCandidateConfigurations(annotationMetadata,      attributes);获取候选的配置
 
   - ```java
     SpringFactoriesLoader.loadFactoryNames()
     扫描所有jar包类路径下  META-INF/spring.factories
     把扫描到的这些文件的内容包装成properties对象
     从properties中获取到EnableAutoConfiguration.class类（类名）对应的值，然后把他们添加在容器中
-
+    
     ```
 
     
@@ -1013,20 +1011,20 @@ xxxxProperties:封装配置文件中相关属性；
 
 作用：必须是@Conditional指定的条件成立，才给容器中添加组件，配置配里面的所有内容才生效；
 
-| @Conditional扩展注解                | 作用（判断是否满足当前指定条件）               |
-| ------------------------------- | ------------------------------ |
-| @ConditionalOnJava              | 系统的java版本是否符合要求                |
-| @ConditionalOnBean              | 容器中存在指定Bean；                   |
-| @ConditionalOnMissingBean       | 容器中不存在指定Bean；                  |
-| @ConditionalOnExpression        | 满足SpEL表达式指定                    |
-| @ConditionalOnClass             | 系统中有指定的类                       |
-| @ConditionalOnMissingClass      | 系统中没有指定的类                      |
+| @Conditional扩展注解            | 作用（判断是否满足当前指定条件）                 |
+| ------------------------------- | ------------------------------------------------ |
+| @ConditionalOnJava              | 系统的java版本是否符合要求                       |
+| @ConditionalOnBean              | 容器中存在指定Bean；                             |
+| @ConditionalOnMissingBean       | 容器中不存在指定Bean；                           |
+| @ConditionalOnExpression        | 满足SpEL表达式指定                               |
+| @ConditionalOnClass             | 系统中有指定的类                                 |
+| @ConditionalOnMissingClass      | 系统中没有指定的类                               |
 | @ConditionalOnSingleCandidate   | 容器中只有一个指定的Bean，或者这个Bean是首选Bean |
-| @ConditionalOnProperty          | 系统中指定的属性是否有指定的值                |
-| @ConditionalOnResource          | 类路径下是否存在指定资源文件                 |
-| @ConditionalOnWebApplication    | 当前是web环境                       |
-| @ConditionalOnNotWebApplication | 当前不是web环境                      |
-| @ConditionalOnJndi              | JNDI存在指定项                      |
+| @ConditionalOnProperty          | 系统中指定的属性是否有指定的值                   |
+| @ConditionalOnResource          | 类路径下是否存在指定资源文件                     |
+| @ConditionalOnWebApplication    | 当前是web环境                                    |
+| @ConditionalOnNotWebApplication | 当前不是web环境                                  |
+| @ConditionalOnJndi              | JNDI存在指定项                                   |
 
 **自动配置类必须在一定的条件下才能生效；**
 
@@ -1091,8 +1089,8 @@ Negative matches:（没有启动，没有匹配成功的自动配置类）
 
 JUL、JCL、Jboss-logging、logback、log4j、log4j2、slf4j....
 
-| 日志门面  （日志的抽象层）                           | 日志实现                                     |
-| ---------------------------------------- | ---------------------------------------- |
+| 日志门面  （日志的抽象层）                                   | 日志实现                                             |
+| ------------------------------------------------------------ | ---------------------------------------------------- |
 | ~~JCL（Jakarta  Commons Logging）~~    SLF4j（Simple  Logging Facade for Java）    **~~jboss-logging~~** | Log4j  JUL（java.util.logging）  Log4j2  **Logback** |
 
 左边选一个门面（抽象层）、右边来选一个实现；
@@ -1131,7 +1129,7 @@ public class HelloWorld {
 
 图示；
 
-![images/concrete-bindings.png](images/concrete-bindings.png)
+![images/concrete-bindings.png](https://img-blog.csdnimg.cn/20201215150836587.png)
 
 每一个日志的实现框架都有自己的配置文件。使用slf4j以后，**配置文件还是做成日志实现框架自己本身的配置文件；**
 
@@ -1141,7 +1139,7 @@ a（slf4j+logback）: Spring（commons-logging）、Hibernate（jboss-logging）
 
 统一日志记录，即使是别的框架和我一起统一使用slf4j进行输出？
 
-![](images/legacy.png)
+![](https://img-blog.csdnimg.cn/2020121515090374.png)
 
 **如何让系统中所有的日志都统一到slf4j；**
 
@@ -1175,7 +1173,7 @@ SpringBoot使用它来做日志功能；
 
 底层依赖关系
 
-![](images/搜狗截图20180131220946.png)
+![](https://img-blog.csdnimg.cn/20201215150930754.png)
 
 总结：
 
@@ -1194,7 +1192,7 @@ public abstract class LogFactory {
     static LogFactory logFactory = new SLF4JLogFactory();
 ```
 
-![](images/搜狗截图20180131221411.png)
+![](https://img-blog.csdnimg.cn/20201215150952151.png)
 
 
 
@@ -1255,6 +1253,7 @@ SpringBoot默认帮我们配置好了日志；
     		%n是换行符
         -->
         %d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n
+
 SpringBoot修改日志的默认配置
 
 ```properties
@@ -1275,21 +1274,21 @@ logging.pattern.console=%d{yyyy-MM-dd} [%thread] %-5level %logger{50} - %msg%n
 logging.pattern.file=%d{yyyy-MM-dd} === [%thread] === %-5level === %logger{50} ==== %msg%n
 ```
 
-| logging.file | logging.path | Example  | Description             |
-| ------------ | ------------ | -------- | ----------------------- |
-| (none)       | (none)       |          | 只在控制台输出                 |
-| 指定文件名        | (none)       | my.log   | 输出日志到my.log文件           |
-| (none)       | 指定目录         | /var/log | 输出到指定目录的 spring.log 文件中 |
+| logging.file | logging.path | Example  | Description                        |
+| ------------ | ------------ | -------- | ---------------------------------- |
+| (none)       | (none)       |          | 只在控制台输出                     |
+| 指定文件名   | (none)       | my.log   | 输出日志到my.log文件               |
+| (none)       | 指定目录     | /var/log | 输出到指定目录的 spring.log 文件中 |
 
 ### 2、指定配置
 
 给类路径下放上每个日志框架自己的配置文件即可；SpringBoot就不使用他默认配置的了
 
-| Logging System          | Customization                            |
-| ----------------------- | ---------------------------------------- |
+| Logging System          | Customization                                                |
+| ----------------------- | ------------------------------------------------------------ |
 | Logback                 | `logback-spring.xml`, `logback-spring.groovy`, `logback.xml` or `logback.groovy` |
-| Log4j2                  | `log4j2-spring.xml` or `log4j2.xml`      |
-| JDK (Java Util Logging) | `logging.properties`                     |
+| Log4j2                  | `log4j2-spring.xml` or `log4j2.xml`                          |
+| JDK (Java Util Logging) | `logging.properties`                                         |
 
 logback.xml：直接就被日志框架识别了；
 
@@ -1502,7 +1501,7 @@ public class ResourceProperties implements ResourceLoaderAware {
 
 http://www.webjars.org/
 
-![](images/搜狗截图20180203181751.png)
+![](https://img-blog.csdnimg.cn/20201215151022339.png)
 
 localhost:8080/webjars/jquery/3.3.1/jquery.js
 
@@ -1541,7 +1540,7 @@ localhost:8080/abc ===  去静态资源文件夹里面找abc
 
 JSP、Velocity、Freemarker、Thymeleaf
 
-![](images/template-engine.png)
+![](https://img-blog.csdnimg.cn/20201215151042791.png)
 
 
 
@@ -1619,7 +1618,7 @@ public class ThymeleafProperties {
 
 ​	th：任意html属性；来替换原生属性的值
 
-![](images/2018-02-04_123955.png)
+![](https://img-blog.csdnimg.cn/20201215151107867.png)
 
 
 
@@ -1708,6 +1707,7 @@ Spring Boot 自动配置好了SpringMVC
 以下是SpringBoot对SpringMVC的默认配置:**==（WebMvcAutoConfiguration）==**
 
 - Inclusion of `ContentNegotiatingViewResolver` and `BeanNameViewResolver` beans.
+
   - 自动配置了ViewResolver（视图解析器：根据方法的返回值得到视图对象（View），视图对象决定如何渲染（转发？重定向？））
   - ContentNegotiatingViewResolver：组合所有的视图解析器的；
   - ==如何定制：我们可以自己给容器中添加一个视图解析器；自动的将其组合进来；==
@@ -1900,7 +1900,6 @@ public class WebMvcAutoConfiguration {
 ### 1）、默认访问首页
 
 ```java
-
 //使用WebMvcConfigurerAdapter可以来扩展SpringMVC的功能
 //@EnableWebMvc   不要接管SpringMVC
 @Configuration
@@ -1943,7 +1942,7 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter {
 
 1）、编写国际化配置文件，抽取页面需要显示的国际化消息
 
-![](images/搜狗截图20180211130721.png)
+![](https://img-blog.csdnimg.cn/20201215151138423.png)
 
 
 
@@ -1984,7 +1983,7 @@ public class MessageSourceAutoConfiguration {
 
 3）、去页面获取国际化的值；
 
-![](images/搜狗截图20180211134506.png)
+![](https://img-blog.csdnimg.cn/20201215151201290.png)
 
 
 
@@ -2114,7 +2113,6 @@ spring.thymeleaf.cache=false
 拦截器
 
 ```java
-
 /**
  * 登陆检查，
  */
@@ -2269,7 +2267,6 @@ insert的公共片段在div标签中
 引入片段的时候传入参数： 
 
 ```html
-
 <nav class="col-md-2 d-none d-md-block bg-light sidebar" id="sidebar">
     <div class="sidebar-sticky">
         <ul class="nav flex-column">
@@ -2427,17 +2424,17 @@ insert的公共片段在div标签中
 
 ​		1）、浏览器，返回一个默认的错误页面
 
-![](images/搜狗截图20180226173408.png)
+![](https://img-blog.csdnimg.cn/2020121515124062.png)
 
   浏览器发送请求的请求头：
 
-![](images/搜狗截图20180226180347.png)
+![](https://img-blog.csdnimg.cn/20201215151302748.png)
 
 ​		2）、如果是其他客户端，默认响应一个json数据
 
-![](images/搜狗截图20180226173527.png)
+![](https://img-blog.csdnimg.cn/20201215151324613.png)
 
-​		![](images/搜狗截图20180226180504.png)
+​		![](https://img-blog.csdnimg.cn/20201215151347201.png)
 
 原理：
 
@@ -2652,7 +2649,7 @@ public class MyErrorAttributes extends DefaultErrorAttributes {
 
 最终的效果：响应是自适应的，可以通过定制ErrorAttributes改变需要返回的内容，
 
-![](images/搜狗截图20180228135513.png)
+![](https://img-blog.csdnimg.cn/20201215151413427.png)
 
 
 
@@ -2660,7 +2657,7 @@ public class MyErrorAttributes extends DefaultErrorAttributes {
 
 SpringBoot默认使用Tomcat作为嵌入式的Servlet容器；
 
-![](images/搜狗截图20180301142915.png)
+![](https://img-blog.csdnimg.cn/20201215151432522.png)
 
 
 
@@ -2769,7 +2766,7 @@ public ServletRegistrationBean dispatcherServletRegistration(
 
 ### 3）、替换为其他嵌入式Servlet容器
 
-![](images/搜狗截图20180302114401.png)
+![](https://img-blog.csdnimg.cn/20201215151455498.png)
 
 默认支持：
 
@@ -2899,11 +2896,11 @@ public interface EmbeddedServletContainerFactory {
 }
 ```
 
-![](images/搜狗截图20180302144835.png)
+![](https://img-blog.csdnimg.cn/20201215151532361.png)
 
 2）、EmbeddedServletContainer：（嵌入式的Servlet容器）
 
-![](images/搜狗截图20180302144910.png)
+![](https://img-blog.csdnimg.cn/20201215151555874.png)
 
 
 
@@ -3000,9 +2997,7 @@ ServerProperties也是定制器
 
 3）、后置处理器，从容器中获取所有的**EmbeddedServletContainerCustomizer**，调用定制器的定制方法
 
-
-
-###5）、嵌入式Servlet容器启动原理；
+### 5）、嵌入式Servlet容器启动原理；
 
 什么时候创建嵌入式的Servlet容器工厂？什么时候获取嵌入式的Servlet容器并启动Tomcat；
 
@@ -3176,7 +3171,7 @@ Spring的web模块里面有这个文件：**org.springframework.web.SpringServle
 
 4）、每一个WebApplicationInitializer都调用自己的onStartup；
 
-![](images/搜狗截图20180302221835.png)
+![](https://img-blog.csdnimg.cn/20201215151718963.png)
 
 5）、相当于我们的SpringBootServletInitializer的类会被创建对象，并执行onStartup方法
 
@@ -3277,11 +3272,11 @@ Docker支持将软件编译成一个镜像；然后在镜像中各种软件做�
 
 运行中的这个镜像称为容器，容器启动是非常快速的。
 
-![](images/搜狗截图20180303145450.png)
+![](https://img-blog.csdnimg.cn/20201215151808894.png)
 
 
 
-![](images/搜狗截图20180303145531.png)
+![](https://img-blog.csdnimg.cn/20201215151827851.png)
 
 ## 2、核心概念
 
@@ -3295,7 +3290,7 @@ docker镜像(Images)：软件打包好的镜像；放在docker仓库中；
 
 docker容器(Container)：镜像启动后的实例称为一个容器；容器是独立运行的一个或一组应用
 
-![](images/搜狗截图20180303165113.png)
+![](https://img-blog.csdnimg.cn/20201215151913270.png)
 
 使用Docker的步骤：
 
@@ -3622,7 +3617,7 @@ public class DruidConfig {
 		</dependency>
 ```
 
-![](images/搜狗截图20180305194443.png)
+![](https://img-blog.csdnimg.cn/20201215151940961.png)
 
 步骤：
 
@@ -3707,7 +3702,7 @@ http://www.mybatis.org/spring-boot-starter/mybatis-spring-boot-autoconfigure/
 
 ### 1）、SpringData简介
 
-![](images/搜狗截图20180306105412.png)
+![](https://img-blog.csdnimg.cn/20201215152002227.png)
 
 ### 2）、整合SpringData JPA
 
@@ -3797,9 +3792,9 @@ private void initialize(Object[] sources) {
 }
 ```
 
-![](images/搜狗截图20180306145727.png)
+![](https://img-blog.csdnimg.cn/202012151520257.png)
 
-![](images/搜狗截图20180306145855.png)
+![](https://img-blog.csdnimg.cn/20201215152044110.png)
 
 ## 2、运行run方法
 
