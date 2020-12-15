@@ -168,7 +168,7 @@ public class Person {
 
 调整
 
-![idea配置乱码](img/搜狗截图20180130161620.png)
+![](img/p1.png)
 
 #### 2、@Value获取值和@ConfigurationProperties获取值比较
 
