@@ -317,11 +317,9 @@ IDE都支持使用Spring的项目创建向导快速创建一个Spring Boot项目
 
 SpringBoot使用一个全局的配置文件，配置文件名是固定的；
 
-•application.properties
+- application.properties
 
-•application.yml
-
-
+- application.yml
 
 配置文件的作用：修改SpringBoot自动配置的默认值；SpringBoot在底层都给我们自动配置好；
 
@@ -329,9 +327,8 @@ SpringBoot使用一个全局的配置文件，配置文件名是固定的；
 
 YAML（YAML Ain't Markup Language）
 
-​	YAML  A Markup Language：是一个标记语言
-
-​	YAML   isn't Markup Language：不是一个标记语言；
+- YAML  A Markup Language：是一个标记语言
+- YAML   isn't Markup Language：不是一个标记语言；
 
 标记语言：
 
@@ -666,11 +663,9 @@ person.dog.age=15
 
 ### 1、多Profile文件
 
-我们在主配置文件编写的时候，文件名可以是   application-{profile}.properties/yml
+我们在主配置文件编写的时候，文件名可以是   `application-{profile}.properties/yml`
 
 默认使用application.properties的配置；
-
-
 
 ### 2、yml支持多文档块方式
 
@@ -696,61 +691,76 @@ spring:
   profiles: prod  #指定属于哪个环境
 ```
 
-
-
-
-
 ### 3、激活指定profile
 
-​	1、在配置文件中指定  spring.profiles.active=dev
+1. 在配置文件中指定  `spring.profiles.active=dev`
 
-​	2、命令行：
+2. 命令行：
 
-​		java -jar spring-boot-02-config-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev；
+   ~~~shell
+   java -jar spring-boot-02-config-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev；
+   ~~~
 
-​		可以直接在测试的时候，配置传入命令行参数
+   可以直接在测试的时候，配置传入命令行参数(Edit Configurations-->Program arguments--> --spring.profiles.active=dev)
 
-​	3、虚拟机参数；
+3. 虚拟机参数
 
-​		-Dspring.profiles.active=dev
-
-
+   ~~~shell
+   Edit Configurations-->Program arguments--> -Dspring.profiles.active=dev
+   ~~~
 
 ## 6、配置文件加载位置
 
-springboot 启动会扫描以下位置的application.properties或者application.yml文件作为Spring boot的默认配置文件
+> [SpringBoot项目中配置文件的启动顺序](https://blog.csdn.net/qq_17165047/article/details/103377183)
 
+springboot 启动会扫描以下位置的`application.properties`或者`application.yml`文件作为Spring boot的默认配置文件
+
+~~~shell
 –file:./config/
-
 –file:./
-
 –classpath:/config/
-
 –classpath:/
+~~~
 
 优先级由高到底，高优先级的配置会覆盖低优先级的配置；
 
-SpringBoot会从这四个位置全部加载主配置文件；**互补配置**；
+SpringBoot会从这四个位置全部加载主配置文件；**互补配置**:高优先级的用高优先级的配置，高优先级没有的配置用低优先级的；
 
+![](https://img-blog.csdnimg.cn/20201215164533555.png)
 
+我们还可以通过`spring.config.location`来改变默认的配置文件位置
 
-==我们还可以通过spring.config.location来改变默认的配置文件位置==
+项目打包好以后，我们可以使用命令行参数的形式，启动项目的时候来指定配置文件的新位置；指定配置文件和默认加载的这些配置文件共同起作用形成互补配置；
 
-**项目打包好以后，我们可以使用命令行参数的形式，启动项目的时候来指定配置文件的新位置；指定配置文件和默认加载的这些配置文件共同起作用形成互补配置；**
-
+~~~shell
 java -jar spring-boot-02-config-02-0.0.1-SNAPSHOT.jar --spring.config.location=G:/application.properties
+~~~
 
 ## 7、外部配置加载顺序
 
-**==SpringBoot也可以从以下位置加载配置； 优先级从高到低；高优先级的配置覆盖低优先级的配置，所有的配置会形成互补配置==**
+SpringBoot也可以从以下位置加载配置； 优先级从高到低；高优先级的配置覆盖低优先级的配置，所有的配置会形成互补配置
 
 **1.命令行参数**
 
 所有的配置都可以在命令行上进行指定
 
-java -jar spring-boot-02-config-02-0.0.1-SNAPSHOT.jar --server.port=8087  --server.context-path=/abc
+~~~shell
+java -jar spring-boot-02-config-02-0.0.1-SNAPSHOT.jar --server.port=8087 --server.context-path=/abc
+~~~
 
 多个配置用空格分开； --配置项=值
+
+> 可能出现server.context-path配置访问路径不起作用
+>
+> 可能是springboot版本不同造成，统计了需要注意新旧版不同的一些代码。
+>
+> **1.server.context-path配置文件访问路径**
+> 旧版：server.context-path
+> 新版：server.servlet.context-path
+>
+> **2.spring.config.location命令行参数引用外部配置文件**
+> 旧版：spring.config.location
+> 新版：spring.config.additional-location
 
 
 
@@ -764,21 +774,19 @@ java -jar spring-boot-02-config-02-0.0.1-SNAPSHOT.jar --server.port=8087  --serv
 
 
 
-==**由jar包外向jar包内进行寻找；**==
+**由jar包外向jar包内进行寻找**
 
-==**优先加载带profile**==
+**优先加载带profile**
 
-**6.jar包外部的application-{profile}.properties或application.yml(带spring.profile)配置文件**
+6.jar包外部的application-{profile}.properties或application.yml(带spring.profile)配置文件
 
-**7.jar包内部的application-{profile}.properties或application.yml(带spring.profile)配置文件**
+7.jar包内部的application-{profile}.properties或application.yml(带spring.profile)配置文件
 
+**再来加载不带profile**
 
+8.jar包外部的application.properties或application.yml(不带spring.profile)配置文件
 
-==**再来加载不带profile**==
-
-**8.jar包外部的application.properties或application.yml(不带spring.profile)配置文件**
-
-**9.jar包内部的application.properties或application.yml(不带spring.profile)配置文件**
+9.jar包内部的application.properties或application.yml(不带spring.profile)配置文件
 
 
 
@@ -788,19 +796,19 @@ java -jar spring-boot-02-config-02-0.0.1-SNAPSHOT.jar --server.port=8087  --serv
 
 所有支持的配置加载来源；
 
-[参考官方文档](https://docs.spring.io/spring-boot/docs/1.5.9.RELEASE/reference/htmlsingle/#boot-features-external-config)
+[参考官方文档](https://docs.spring.io/spring-boot/docs/2.4.1/reference/htmlsingle/#boot-features-external-config)
 
 ## 8、自动配置原理
 
 配置文件到底能写什么？怎么写？自动配置原理；
 
-[配置文件能配置的属性参照](https://docs.spring.io/spring-boot/docs/1.5.9.RELEASE/reference/htmlsingle/#common-application-properties)
+[配置文件能配置的属性参照](https://docs.spring.io/spring-boot/docs/2.4.1/reference/htmlsingle/#common-application-properties)
 
 
 
 ### 1、**自动配置原理：**
 
-1）、SpringBoot启动的时候加载主配置类，开启了自动配置功能 ==@EnableAutoConfiguration==
+1）、SpringBoot启动的时候加载主配置类，开启了自动配置功能 @EnableAutoConfiguration
 
 **2）、@EnableAutoConfiguration 作用：**
 
@@ -818,9 +826,10 @@ java -jar spring-boot-02-config-02-0.0.1-SNAPSHOT.jar --server.port=8087  --serv
     
     ```
 
-    
 
-**==将 类路径下  META-INF/spring.factories 里面配置的所有EnableAutoConfiguration的值加入到了容器中；==**
+
+
+**将 类路径下  META-INF/spring.factories 里面配置的所有EnableAutoConfiguration的值加入到了容器中；**
 
 ```properties
 # Auto Configure
@@ -938,7 +947,7 @@ org.springframework.boot.autoconfigure.webservices.WebServicesAutoConfiguration
 @ConditionalOnClass(CharacterEncodingFilter.class)  //判断当前项目有没有这个类CharacterEncodingFilter；SpringMVC中进行乱码解决的过滤器；
 
 @ConditionalOnProperty(prefix = "spring.http.encoding", value = "enabled", matchIfMissing = true)  //判断配置文件中是否存在某个配置  spring.http.encoding.enabled；如果不存在，判断也是成立的
-//即使我们配置文件中不配置pring.http.encoding.enabled=true，也是默认生效的；
+//即使我们配置文件中不配置spring.http.encoding.enabled=true，也是默认生效的；
 public class HttpEncodingAutoConfiguration {
   
   	//他已经和SpringBoot的配置文件映射了
@@ -1030,7 +1039,7 @@ xxxxProperties:封装配置文件中相关属性；
 
 我们怎么知道哪些自动配置类生效；
 
-**==我们可以通过启用  debug=true属性；来让控制台打印自动配置报告==**，这样我们就可以很方便的知道哪些自动配置类生效；
+**我们可以通过启用  debug=true属性；来让控制台打印自动配置报告**，这样我们就可以很方便的知道哪些自动配置类生效；
 
 ```java
 =========================

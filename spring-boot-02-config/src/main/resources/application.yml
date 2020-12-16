@@ -1,7 +1,19 @@
 server:
   port: 8081
-
-
+spring:
+  profiles:
+    active: prod # 指定激活哪个profile
+---
+server:
+  port: 8083
+spring:
+  profiles: dev #指定属于哪个环境
+---
+server:
+  port: 8084
+spring:
+  profiles: prod
+---
 #person:
 #  age: 18
 #  boss: false

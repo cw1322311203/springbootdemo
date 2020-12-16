@@ -2,6 +2,7 @@ package com.cw.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 /**
@@ -12,8 +13,9 @@ import org.springframework.context.annotation.ComponentScan;
  * 2.可以直接使用组合注解@Spring BootApplication来代替@EnableAutoConfiguration和@ComponentScan
  * 3.@ComponentScan注解默认扫描的类都位于当前类所在包的下面，因此建议在实际项目开发中把项目启动类放在根包中
  */
-@EnableAutoConfiguration
-@ComponentScan
+//@EnableAutoConfiguration
+//@ComponentScan
+@SpringBootApplication
 public class App {
     public static void main(String[] args) {
         /**
